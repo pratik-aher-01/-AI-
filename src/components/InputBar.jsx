@@ -1,43 +1,26 @@
 import React, { useState } from "react";
-import { Mic, Image, Send } from "lucide-react";
 
 function InputBar({ onSend }) {
-  const [message, setMessage] = useState("");
+  const [text, setText] = useState("");
 
-  const handleSend = () => {
-    if (message.trim() !== "") {
-      onSend(message);
-      setMessage("");
-    }
+  const handleSendClick = () => {
+    onSend(text);
+    setText("");
   };
 
   return (
-    <div className="flex items-center gap-2 p-3 border-t bg-white fixed bottom-0 left-0 w-full">
-      {/* Mic button (future voice input) */}
-      <button className="p-2 rounded-full hover:bg-green-100">
-        <Mic size={20} className="text-green-700" />
-      </button>
-
-      {/* Photo button (future crop photo input) */}
-      <button className="p-2 rounded-full hover:bg-green-100">
-        <Image size={20} className="text-green-700" />
-      </button>
-
-      {/* Text input */}
-      <input
-        type="text"
-        placeholder="नमस्कार शेतकरी !"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        className="flex-1 border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+    <div className="flex items-center p-4 gap-2 bg-white shadow-inner sticky bottom-0">
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        className="flex-1 rounded-xl p-2 border border-gray-300"
+        placeholder="तुमचं प्रश्न लिहा..."
       />
-
-      {/* Send button */}
       <button
-        onClick={handleSend}
-        className="bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition"
+        onClick={handleSendClick}
+        className="bg-farmerGreen text-white p-2 rounded-xl hover:bg-farmerYellow transition-colors duration-200"
       >
-        <Send size={20} />
+        पाठवा
       </button>
     </div>
   );
