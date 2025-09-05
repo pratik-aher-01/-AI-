@@ -1,29 +1,14 @@
 import React from "react";
 
-function ChatBubble({ sender, text, onSpeak }) {
-  const isUser = sender === "user";
-
+function ChatBubble({ sender, text }) {
+  const isAI = sender === "ai";
   return (
     <div
-      className={`flex ${isUser ? "justify-end" : "justify-start"} mb-2`}
+      className={`max-w-xs p-3 my-2 rounded-xl shadow-md ${
+        isAI ? "bg-farmerGreen text-white self-start" : "bg-farmerYellow text-black self-end"
+      }`}
     >
-      <div
-        className={`p-3 rounded-2xl max-w-[70%] ${
-          isUser
-            ? "bg-green-600 text-white rounded-br-none"
-            : "bg-white border border-green-300 text-black rounded-bl-none"
-        }`}
-      >
-        <p>{text}</p>
-        {!isUser && (
-          <button
-            onClick={onSpeak}
-            className="text-sm text-green-700 mt-1 underline"
-          >
-            🔊 ऐका
-          </button>
-        )}
-      </div>
+      {text}
     </div>
   );
 }
