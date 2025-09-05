@@ -1,36 +1,38 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 function Sidebar({ open, onClose }) {
+  const menuItems = [
+    { name: "हवामान", path: "/weather", icon: "🌡️" },
+    { name: "बाजार भाव", path: "/market", icon: "💰" },
+    { name: "सरकारी योजना", path: "/schemes", icon: "📜" },
+    { name: "पिक आजार", path: "/diseases", icon: "🦠" },
+    { name: "नोट्स", path: "/notes", icon: "📝" },
+  ];
+
   return (
-    <>
-      {/* Overlay (click to close) */}
-      {open && (
-        <div
-          className="fixed inset-0 bg-black/40 z-40"
-          onClick={onClose}
-        ></div>
-      )}
-
-      {/* Sidebar sliding in from left */}
-      <motion.aside
-        initial={{ x: -250 }}
-        animate={{ x: open ? 0 : -250 }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed top-0 left-0 h-full w-60 bg-white shadow-lg z-50 p-4"
+    <div
+      className={`fixed top-0 left-0 h-full w-64 bg-white shadow-xl transform ${
+        open ? "translate-x-0" : "-translate-x-full"
+      } transition-transform duration-300 z-40`}
+    >
+      <button
+        onClick={onClose}
+        className="m-4 text-xl font-bold hover:text-farmerGreen"
       >
-        <h2 className="text-lg font-bold text-green-700 mb-4">मेनू</h2>
-
-        <nav className="flex flex-col gap-3">
-          <Link to="/weather" className="rounded-lg bg-green-100 p-2 hover:bg-green-200">🌝 हवामान</Link>
-          <Link to="/market" className="rounded-lg bg-green-100 p-2 hover:bg-green-200">💰 बाजार भाव</Link>
-          <Link to="/schemes" className="rounded-lg bg-green-100 p-2 hover:bg-green-200">🏛️ शासकीय योजना</Link>
-          <Link to="/diseases" className="rounded-lg bg-green-100 p-2 hover:bg-green-200">🌾 पिकांचे रोग</Link>
-          <Link to="/notes" className="rounded-lg bg-green-100 p-2 hover:bg-green-200">📝 शेतकरी नोट्स</Link>
-        </nav>
-      </motion.aside>
-    </>
+        ✖
+      </button>
+      <div className="flex flex-col mt-4">
+        {menuItems.map((item) => (
+          <Link key={item.name} to={item.path}>
+            <div className="flex items-center gap-2 p-3 m-2 rounded-xl hover:bg-green-100 cursor-pointer">
+              <span>{item.icon}</span>
+              <span className="font-medium">{item.name}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
 
