@@ -29,11 +29,11 @@ function App() {
         <div className="flex-1 overflow-y-auto">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/weather" element={<Weather />} />
-            <Route path="/market" element={<Market />} />
-            <Route path="/schemes" element={<Schemes />} />
-            <Route path="/diseases" element={<Diseases />} />
-            <Route path="/notes" element={<Notes />} />
+            <Route path="/weather" element={<Page title="हवामान"/>} />
+<Route path="/market" element={<Page title="बाजार भाव"/>} />
+<Route path="/schemes" element={<Page title="सरकारी योजना"/>} />
+<Route path="/diseases" element={<Page title="पिक आजार"/>} />
+<Route path="/notes" element={<Page title="नोट्स"/>} />
           </Routes>
         </div>
       </div>
