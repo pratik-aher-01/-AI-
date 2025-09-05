@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// Components
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 
@@ -23,7 +25,7 @@ function App() {
         {/* Sidebar */}
         <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
-        {/* Main content */}
+        {/* Main Content */}
         <div className="flex-1 overflow-y-auto">
           <Routes>
             <Route path="/" element={<Home />} />
